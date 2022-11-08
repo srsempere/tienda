@@ -15,3 +15,7 @@ function obtener_get($campo){
 function obtener_post($campo) {
     return obtener_parametro($campo, $_POST);
 }
+
+function volver_articulos() {
+    header("Location: /admin/");
+}
