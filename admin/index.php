@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +8,16 @@
     <title>Listado de artículos</title>
 </head>
 <body>
+<?php
+    require('auxiliar.php');
+
+    $pdo = conectar();
+    $pdo->beginTransaction();
+
+
+    $pdo->commit();
+?>
+
     Listado de artículos
 </body>
 </html>
