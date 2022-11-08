@@ -35,10 +35,10 @@
                 <label for="descripcion">Descripcion: </label><input type="text" name="descripcion">
             </p>
             <p>
-                <label for="desde_precio">Desde precio: </label><input type="text" name="desde_ precio">
+                <label for="desde_precio">Desde precio: </label><input type="text" name="desde_precio">
             </p>
             <p>
-                <label for="hasta_precio">Hasta precio: </label><input type="text" name="hasta_ precio">
+                <label for="hasta_precio">Hasta precio: </label><input type="text" name="hasta_precio">
             </p>
             <button type="submit">Buscar</button>
         </fieldset>
@@ -55,7 +55,7 @@
         $execute[':desde_codigo'] = $desde_codigo;
     }
     if (isset($hasta_codigo) && $hasta_codigo != '') {
-        $where[] = 'codigo >= :hasta_codigo';
+        $where[] = 'codigo <= :hasta_codigo';
         $execute[':hasta_codigo'] = $hasta_codigo;
     }
     if (isset($descripcion) && $descripcion != '') {
@@ -67,7 +67,7 @@
         $execute[':desde_precio'] = $desde_precio;
     }
     if (isset($hasta_precio) && $hasta_precio != '') {
-        $where[] = 'precio >= :hasta_precio';
+        $where[] = 'precio <= :hasta_precio';
         $execute[':hasta_precio'] = $hasta_precio;
     }
 
@@ -79,6 +79,7 @@
     $sent = $pdo->prepare("SELECT * FROM articulos $where ORDER BY codigo");
     $sent->execute($execute);
     $pdo->commit();
+    $nf = new NumberFormatter('es_ES', NumberFormatter::CURRENCY);
     ?>
     </br>
     <div>
@@ -86,16 +87,18 @@
             <thead>
                 <th>Código</th>
                 <th>Descripción</th>
+                <th>Precio</th>
                 <th colspan="2">Acciones</th>
             </thead>
             <tbody>
-                <?php foreach ($sent as $fila): ?>
-                <tr>
-                    <td><?= $fila['codigo'] ?></td>
-                    <td><?= $fila['descripcion'] ?></td>
-                    <td>Borrar</td>
-                    <td>Modificar</td>
-                </tr>
+                <?php foreach ($sent as $fila) : ?>
+                    <tr>
+                        <td><?= $fila['codigo'] ?></td>
+                        <td><?= $fila['descripcion'] ?></td>
+                        <td align="right"><?= $nf->format($fila['precio']) ?></td>
+                        <td>Borrar</td>
+                        <td>Modificar</td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
