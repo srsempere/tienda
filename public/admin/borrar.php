@@ -19,7 +19,7 @@ $sent->execute([':id' => $id]);
 if ($sent->fetchColumn() === 0) {
     $sent = $pdo->prepare("DELETE FROM articulos WHERE id = :id");
     $sent->execute([":id" => $id]);
-    $_SESSION['mensaje'] = 'El departamento se ha borrado correctamente';
+    $_SESSION['mensaje'] = 'El articulo se ha borrado correctamente';
 }
 $pdo->commit();
 volver_articulos();

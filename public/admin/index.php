@@ -96,7 +96,7 @@
                         <td><?= $fila['codigo'] ?></td>
                         <td><?= $fila['descripcion'] ?></td>
                         <td align="right"><?= $nf->format($fila['precio']) ?></td>
-                        <td>Borrar</td>
+                        <td><a href="confirmar_borrado.php?id=<?= $fila['id'] ?>">Borrar</a></td>
                         <td>Modificar</td>
                     </tr>
                 <?php endforeach; ?>
