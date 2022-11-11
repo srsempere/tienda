@@ -19,6 +19,6 @@
     Hello world!
   </h1>
 
-<script src="js/flowbite.js"></script>
+<script src="/js/flowbite/flowbite.js"></script>
 </body>
 </html>
