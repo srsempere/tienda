@@ -11,7 +11,7 @@
 
 <body>
     <?php
-    require('auxiliar.php');
+    require('../../src/admin-auxiliar.php');
 
     $desde_codigo = obtener_get('desde_codigo');
     $hasta_codigo = obtener_get('hasta_codigo');
@@ -96,13 +96,18 @@
                         <td><?= $fila['codigo'] ?></td>
                         <td><?= $fila['descripcion'] ?></td>
                         <td align="right"><?= $nf->format($fila['precio']) ?></td>
-                        <td><a href="confirmar_borrado.php?id=<?= $fila['id'] ?>">Borrar</a></td>
-                        <td>Modificar</td>
+                        <td>
+                            <?php $fila_id = $fila['id'] ?>
+                            <a href="/admin/editar.php?id=<?= $fila ?>"><button class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">Editar</button></a>
+                        <a href="confirmar_borrado.php?id=<?= $fila['id'] ?>">Borrar</a>
+                        </td>
+
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+    <script src="../js/flowbite.js"></script>
 </body>
 
 </html>

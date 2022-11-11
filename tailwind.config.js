@@ -6,6 +6,6 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    requite('flowbite/plugin')
+    require('flowbite/plugin')
   ],
 }
